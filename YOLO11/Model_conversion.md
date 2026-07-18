@@ -41,10 +41,3 @@ metadata.yaml
 - 只是把模型转换成 NCNN 可以识别的格式
 
 
-
-# 这是第一个文件
-## 目录1
-```bash
-  sudo apt install `hello`
-```
-
