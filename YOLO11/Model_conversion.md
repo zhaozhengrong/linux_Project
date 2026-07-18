@@ -39,3 +39,13 @@ metadata.yaml
 
 - export 不会重新训练模型
 - 只是把模型转换成 NCNN 可以识别的格式
+
+  ```
+  111
+  ```
+
+  ```bash
+
+  ```python]
+  hello
+  ```
