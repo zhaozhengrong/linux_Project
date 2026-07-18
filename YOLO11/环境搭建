@@ -1,0 +1,5 @@
+# 环境搭建
+## 安装opencv库
+```base
+  sudo apt install libopencv-dev
+```
