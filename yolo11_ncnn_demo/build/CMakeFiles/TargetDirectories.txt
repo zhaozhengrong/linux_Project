@@ -1,0 +1,3 @@
+/home/zzr/linux/yolo11_ncnn_demo/build/CMakeFiles/rebuild_cache.dir
+/home/zzr/linux/yolo11_ncnn_demo/build/CMakeFiles/yolo11_ncnn_demo.dir
+/home/zzr/linux/yolo11_ncnn_demo/build/CMakeFiles/edit_cache.dir
