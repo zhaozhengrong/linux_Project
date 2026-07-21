@@ -113,10 +113,8 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
         strides[2] = 32;
         const int max_stride = 32;
 
-
         // letterbox pad to multiple of max_stride
         /* 这里按比例缩放图片*/
-
         /* 
                 1920×1080 → 640×360（宽压缩）
                 1080×1920 → 360×640（高压缩）
@@ -168,8 +166,10 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
                 800×600	         640×480	 w: 0, h: 0	      640×480
                 1280×720	640×360	        w: 0, h: 24	    640×384
         */
-        // int wpad = (w + max_stride - 1) / max_stride * max_stride - w;
+        // int wpad = (w + max_stride - 1) / max_stride * max_stride - w;    
         // int hpad = (h + max_stride - 1) / max_stride * max_stride - h;
+
+        /* 这里宽高都会补到640*640*/
         int wpad = target_size - w;
         int hpad = target_size - h;
 
