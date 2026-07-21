@@ -193,6 +193,8 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
         /* Extractor：每次推理创建一个新实例，存储执行状态*/
         ncnn::Extractor ex = yolo11.create_extractor();
         printf("Extractor ok\r\n");
+
+        /* 把图片放进网络输入口*/
         ex.input("in0", in_pad);
         printf("in ok\r\n");
        
