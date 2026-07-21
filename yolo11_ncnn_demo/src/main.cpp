@@ -152,18 +152,6 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
                 同时进行图像缩放（从原始尺寸 img_w × img_h 缩放到 w × h）
                 存储网络的输入数据        
         */
-        /*
-        copy_make_border(
-            in,                      // 输入图像 (640×360)
-            in_pad,                  // 输出图像 (640×640)
-            hpad / 2,                // 上方填充像素数
-            hpad - hpad / 2,         // 下方填充像素数
-            wpad / 2,                // 左方填充像素数
-            wpad - wpad / 2,         // 右方填充像素数
-            ncnn::BORDER_CONSTANT,   // 填充方式（常数）
-            114.f                    // 填充值（灰色 114）
-        );
-        */
         ncnn::Mat in = ncnn::Mat::from_pixels_resize(bgr.data,ncnn::Mat::PIXEL_BGR2RGB,img_w,img_h,w,h);
 
          // letterbox pad to target_size rectangle
@@ -179,8 +167,20 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
         /* 这里宽高都会补到640*640*/
         int wpad = target_size - w;
         int hpad = target_size - h;
-
+    
         ncnn::Mat in_pad;
+         /*
+            copy_make_border(
+                in,                      // 输入图像 (640×360)
+                in_pad,                  // 输出图像 (640×640)
+                hpad / 2,                // 上方填充像素数
+                hpad - hpad / 2,         // 下方填充像素数
+                wpad / 2,                // 左方填充像素数
+                wpad - wpad / 2,         // 右方填充像素数
+                ncnn::BORDER_CONSTANT,   // 填充方式（常数）
+                114.f                    // 填充值（灰色 114）
+            );
+        */
         ncnn::copy_make_border(in, in_pad, hpad / 2, hpad - hpad / 2, wpad / 2, wpad - wpad / 2, ncnn::BORDER_CONSTANT, 114.f);
 
         /* 归一化 将 0~255 → 0.0~1.0（连续浮点数）  */
