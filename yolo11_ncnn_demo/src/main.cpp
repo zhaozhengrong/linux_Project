@@ -194,7 +194,7 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
         ncnn::Extractor ex = yolo11.create_extractor();
         printf("Extractor ok\r\n");
 
-        /* 把图片放进网络输入口*/
+        /* 把640×640×3 图片放进网络输入口*/
         ex.input("in0", in_pad);
         printf("in ok\r\n");
        
@@ -219,7 +219,7 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
         generate_proposals_decoded(out, prob_threshold, proposals);        
         printf("out ok\r\n");
 
-         qsort_descent_inplace(proposals);
+        qsort_descent_inplace(proposals);
 
          // apply nms with nms_threshold
         std::vector<int> picked;
@@ -227,6 +227,7 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
 
          int count = picked.size();
 
+        /* 把框的坐标恢复到之前图片的大小*/
         objects.resize(count);
         for (int i = 0; i < count; i++)
         {
