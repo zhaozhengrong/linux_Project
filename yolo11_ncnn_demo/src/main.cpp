@@ -49,6 +49,13 @@ int main(int argc, char** argv)
                 通道数（channels）
                 真正的像素数据（data）
         */
+        /*
+            1280 × 960 × 3
+            1280 × 960 = 1,228,800 个像素
+            每个像素 RGB 三个 uchar（每个 1 字节）
+            总数据量：1280 × 960 × 3= 3,686,400 Byte ≈ 3.5 MB
+            这就是 m.data 指向的那块内存。   
+        */
        /*!!!!!!!  用 OpenCV 读取图片文件（无论什么格式：jpg、png 等） 最后都会得到BGR格式的数据*/
         cv::Mat m = cv::imread(imagepath, 1);
          if (m.empty())
