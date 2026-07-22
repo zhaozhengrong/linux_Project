@@ -222,6 +222,12 @@ static int detect_yolo11(cv::Mat &bgr,std::vector<Object> & objects)
         qsort_descent_inplace(proposals);
 
          // apply nms with nms_threshold
+        /*
+            NMS算法包括如下3个步骤:
+            1.基于置信度,对预测框进行排序
+            2.保留置信度最高的预测框,基于IoU交并比消除冗余
+            3.重复上述过程,直到所有预测框都被处理
+        */
         std::vector<int> picked;
         nms_sorted_bboxes(proposals, picked, nms_threshold);
 
