@@ -1,0 +1,144 @@
+1. 打开设备
+        |
+        ↓
+open("/dev/video0")
+        |
+        ↓
+
+2. 查询设备能力
+        |
+        ↓
+VIDIOC_QUERYCAP
+
+确认：
+- 是不是视频采集设备
+- 是否支持 streaming
+
+
+        |
+        ↓
+
+3. 枚举支持的像素格式
+        |
+        ↓
+VIDIOC_ENUM_FMT
+
+得到：
+- MJPEG
+- YUYV
+- NV12 ...
+
+
+        |
+        ↓
+
+4. 查询某种格式支持的分辨率
+        |
+        ↓
+VIDIOC_ENUM_FRAMESIZES
+
+例如：
+
+MJPEG:
+    2560×1440
+    1920×1080
+    1280×720
+
+YUYV:
+    1920×1080
+    1280×720
+
+
+        |
+        ↓
+
+5. 设置摄像头格式
+        |
+        ↓
+VIDIOC_S_FMT
+
+
+告诉驱动：
+
+我要：
+
+width = 1280
+height = 720
+pixelformat = MJPEG
+
+
+        |
+        ↓
+
+6. 获取驱动最终采用的格式
+        |
+        ↓
+VIDIOC_G_FMT
+
+
+确认：
+
+width = 1280
+height = 720
+pixelformat = MJPG
+bytesperline = 0
+sizeimage = 1843200
+
+
+        |
+        ↓
+
+7. 申请buffer
+
+VIDIOC_REQBUFS
+
+
+        |
+        ↓
+
+8. 查询buffer地址
+
+VIDIOC_QUERYBUF
+
+
+        |
+        ↓
+
+9. mmap映射
+
+        |
+        ↓
+
+10. 放入队列
+
+VIDIOC_QBUF
+
+
+        |
+        ↓
+
+11. 开始采集
+
+VIDIOC_STREAMON
+
+
+        |
+        ↓
+
+12. 获取一帧
+
+VIDIOC_DQBUF
+
+
+        |
+        ↓
+
+处理图片
+
+
+        |
+        ↓
+
+13. 放回buffer
+
+VIDIOC_QBUF
